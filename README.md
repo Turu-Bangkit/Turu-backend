@@ -93,7 +93,7 @@ Firebase : sign-in-with google
 {
     "error": false,
     "message": "Success Get Challenge List"
-    “data” :  [
+    "data" :  [
         {
             "id": 1,
             "name": "Tidur 7 Hari",
