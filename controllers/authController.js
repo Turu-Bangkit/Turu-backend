@@ -1,5 +1,5 @@
 const admin = require("../firebaseAdmin");
-const crypto = require('crypto');
+const crypto = require("crypto");
 
 const logout = async (req, res) => {
   const authorizationHeader = req.header("Authorization");
@@ -7,9 +7,9 @@ const logout = async (req, res) => {
 
   try {
     res.status(200).json({ message: "Logout successful", token: token });
-    const hashedToken = crypto.createHash('sha256').update(token).digest('hex');
+    const hashedToken = crypto.createHash("sha256").update(token).digest("hex");
 
-    await admin.database().ref('blacklistedTokens').child(hashedToken).set(true);
+    await admin.database().ref("blacklistedTokens").child(hashedToken).set(true);
   } catch (error) {
     console.log(error);
   }
