@@ -2,26 +2,23 @@ const admin = require("../firebaseAdmin");
 const moment = require("moment-timezone");
 
 const getChallenge = async (req, res) => {
-  const chall = admin.database().ref("challenges");
-  chall.once("value", (snapshot) => {
-    const challengeData = snapshot.val();
-
+  const challenge = admin.database().ref("challenges");
+  try {
     const response = {
       error: false,
-      message: "Success Get Challenge List",
-      data: challengeData.filter((challenge) => challenge !== null),
+      message: "Success Get All Challenge",
+      data: (await challenge.once("value")).val().filter((challenge) => challenge !== null),
     };
-
     res.json(response);
-  });
+  } catch (err) {
+    console.log(err);
+  }
 };
 
 const chooseChallenge = async (req, res) => {
   const { uid } = req.params;
   const { idChallenge } = req.body;
   const user = admin.database().ref(`users/${uid}`);
-  const challenge = admin.database().ref(`challenges/${idChallenge}`);
-  const maxLevel = (await challenge.child("days").once("value")).val();
 
   const userLocalTimeEpoch = moment().valueOf() / 1000;
   const today = moment().tz("Asia/Jakarta").startOf("day");
@@ -112,8 +109,8 @@ const updateLevel = async (req, res) => {
 };
 
 const getDetailChallenge = async (req, res) => {
-  const { uid } = req.params;
-  const challenge = admin.database().ref(`challenges/${uid}`);
+  const { idChallenge } = req.params;
+  const challenge = admin.database().ref(`challenges/${idChallenge}`);
   try {
     const response = {
       error: false,
