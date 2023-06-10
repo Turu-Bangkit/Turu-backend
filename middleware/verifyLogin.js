@@ -17,7 +17,6 @@ const convertFirebaseTokenToJWT = async (tokenFirebase) => {
     return jwtToken;
   } catch (error) {
     console.log("Failed to convert Firebase token to JWT:", error);
-    throw error;
   }
 };
 

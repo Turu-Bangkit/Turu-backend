@@ -63,6 +63,7 @@ const getStatusChallenge = async (req, res) => {
         end_rules_time: (await user.child("end_rules_time").once("value")).val(),
         level_user: (await user.child("level").once("value")).val(),
         max_level: (await challenge.child("days").once("value")).val(),
+        idChallenge: idChallenge,
       },
     };
 
