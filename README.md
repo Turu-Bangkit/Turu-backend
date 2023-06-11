@@ -131,3 +131,59 @@ Firebase : sign-in-with google
         },
     ]
 }
+```
+
+## StartSleeping
+* URL
+    - ```/startsleep```
+* Method
+    - GET
+* Headers
+    - ``Authorization`` : ``Bearer <token>``
+* Request Body
+    - ``uid`` as ``string`` (Path)
+* Response
+```json
+{
+    "error": false,
+    "message": "Success Get Challenge List"
+    "data" :  [
+        {
+            "error": false,
+            "message": "Happy Sleeping"
+        },
+        {
+            "error": false,
+            "message": "You are already sleeping"
+        }
+    ]
+}
+```
+
+## StopSleeping
+* URL
+    - ```/startsleep```
+* Method
+    - GET
+* Headers
+    - ``Authorization`` : ``Bearer <token>``
+* Request Body
+    - ``uid`` as ``string`` (Path)
+    - ``success`` as ``integer`` (Path)
+* Response
+```json
+{
+    "error": false,
+    "message": "Success Get Challenge List"
+    "data" :  [
+        {
+            "error": false,
+            "message": "Happy Sleeping"
+        },
+        {
+            "error": false,
+            "message": "You are already sleeping"
+        }
+    ]
+}
+```
