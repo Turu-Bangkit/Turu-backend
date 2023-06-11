@@ -36,12 +36,18 @@ const verifyLogin = async (req, res, next) => {
     username = payload.given_name;
     picture = payload.picture;
 
-
-
     const users = admin.database().ref("users");
     const check = await users.child(uid).once("value");
     if (check.exists()) {
-      return res.json({ message: "User already exists!" });
+      res.json({
+        error: false,
+        message: "Login Success !",
+        uid: uid,
+        email: email,
+        username: username,
+        picture: picture,
+        jwtToken: jwtToken,
+      });
     } else {
       const user = users.child(uid);
       user
