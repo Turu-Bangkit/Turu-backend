@@ -108,6 +108,26 @@ Firebase : sign-in-with google
 
         },
     ]
-
 }
 ```
+## GetSleepingStatus
+* URL
+    - ```/issleeping```
+* Method
+    - GET
+* Headers
+    - ``Authorization`` : ``Bearer <token>``
+* Request Body
+    - ``uid`` as ``string`` (Path)
+* Response
+```json
+{
+    "error": false,
+    "message": "Success Get Challenge List"
+    "data" :  [
+        {
+            "error": false,
+            "issleeping": 0
+        },
+    ]
+}

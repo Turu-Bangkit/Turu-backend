@@ -3,6 +3,7 @@ const challengeController = require("../controllers/challengeController");
 const catalogController = require("../controllers/catalogController");
 const verifyToken = require("../middleware/verifyToken");
 const verifyLogin = require("../middleware/verifyLogin");
+const sleepController = require("../controllers/sleepController");
 
 const router = require("express").Router();
 
@@ -19,4 +20,7 @@ router.get("/catalog", verifyToken.verifyToken, catalogController.getCatalog);
 router.get("/catalog/:idCatalog", verifyToken.verifyToken, catalogController.getDetailCatalog);
 router.post("/exchangePoint/:uid", verifyToken.verifyToken, catalogController.exchangePoint);
 
+router.post("/startsleep/:uid", verifyToken.verifyToken, sleepController.startsleep);
+router.get("/issleeping/:uid", verifyToken.verifyToken, sleepController.getIsSleeping);
+router.post("/stopsleep/:uid/:success", verifyToken.verifyToken, sleepController.stopsleep);
 module.exports = router;

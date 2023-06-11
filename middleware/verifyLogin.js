@@ -36,6 +36,8 @@ const verifyLogin = async (req, res, next) => {
     username = payload.given_name;
     picture = payload.picture;
 
+
+
     const users = admin.database().ref("users");
     const check = await users.child(uid).once("value");
     if (check.exists()) {
@@ -48,6 +50,10 @@ const verifyLogin = async (req, res, next) => {
           username: username,
           picture: picture,
           point: 0,
+          day_fail: 0,
+          day_succed: 0,
+          streak: 0,
+          issleeping: 0,
         })
         .then(() => {
           console.log("User added successfully");
