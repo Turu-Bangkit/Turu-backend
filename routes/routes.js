@@ -13,8 +13,8 @@ router.post("/login", verifyLogin.verifyLogin);
 
 router.get("/challenge", verifyToken.verifyToken, challengeController.getChallenge);
 router.get("/challenge/:idChallenge", verifyToken.verifyToken, challengeController.getDetailChallenge);
+router.get("/statusChallenge/:uid", verifyToken.verifyToken, challengeController.getStatusChallenge);
 router.post("/updateLevel/:uid", verifyToken.verifyToken, challengeController.updateLevel);
-router.post("/statusChallenge/:uid", verifyToken.verifyToken, challengeController.getStatusChallenge);
 router.post("/chooseChallenge/:uid", verifyToken.verifyToken, challengeController.chooseChallenge);
 
 router.get("/catalog", verifyToken.verifyToken, catalogController.getCatalog);
