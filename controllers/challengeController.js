@@ -41,10 +41,12 @@ const chooseChallenge = async (req, res) => {
   if ((await user.child("idChallenge").once("value")).val() == 0) {
     const userLocalTimeEpoch = moment().valueOf() / 1000;
     const time = moment().tz("Asia/Jakarta").startOf("day");
-    const startTimeEpoch = time.clone().hour(startHour).minute(startMinute).second(0).valueOf() / 1000;
-    const endTimeEpoch = time.clone().hour(endHour).minute(endMinute).second(0).valueOf() / 1000;
-    const diff = endTimeEpoch - startTimeEpoch;
-
+    let startTimeEpoch = time.clone().hour(startHour).minute(startMinute).second(0).valueOf() / 1000;
+    let endTimeEpoch = time.clone().hour(endHour).minute(endMinute).second(0).valueOf() / 1000;
+    if(endTimeEpoch < startTimeEpoch) {
+      endTimeEpoch += 86400;
+    }
+    let diff = endTimeEpoch - startTimeEpoch;
     if (userLocalTimeEpoch > startTimeEpoch) {
       const start_rules_time = startTimeEpoch + 86400;
       user.update({
