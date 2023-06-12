@@ -17,6 +17,11 @@ const getCatalog = async (req, res) => {
 const getDetailCatalog = async (req, res) => {
   const { idCatalog } = req.params;
   const catalog = admin.database().ref(`catalogs/${idCatalog}`);
+  if (!(await catalog.once("value")).exists()) {
+    res.json({ error: true, message: "Catalog Not Found" });
+    return;
+  }
+
   try {
     const response = {
       error: false,
@@ -35,6 +40,15 @@ const exchangePoint = async (req, res) => {
   const user = admin.database().ref(`users/${uid}`);
   const userPoint = (await user.child("point").once("value")).val();
   const point = (await admin.database().ref(`catalogs/${idCatalog}/point`).once("value")).val();
+  
+  if (!(await user.once("value")).exists()) {
+    res.json({ error: true, message: "User Not Found" });
+    return;
+  }
+  if (!(await admin.database().ref(`catalogs/${idCatalog}`).once("value")).exists()) {
+    res.json({ error: true, message: "Catalog Not Found" });
+    return;
+  }
 
   if (userPoint < point) {
     const response = {

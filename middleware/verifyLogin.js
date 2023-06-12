@@ -60,6 +60,7 @@ const verifyLogin = async (req, res, next) => {
           day_succed: 0,
           streak: 0,
           issleeping: 0,
+          idChallenge: 0,
         })
         .then(() => {
           console.log("User added successfully");

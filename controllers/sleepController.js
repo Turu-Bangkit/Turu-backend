@@ -3,6 +3,10 @@ const admin = require("../firebaseAdmin");
 const startsleep = async (req, res) => {
     const { uid } = req.params;
     const user = admin.database().ref(`users/${uid}`);
+    if (!(await user.once("value")).exists()) {
+        res.json({ error: true, message: "User Not Found" });
+        return;
+    }
     const issleeping = (await user.child("issleeping").once("value")).val();
     if (issleeping == 0) {
         user.update({
@@ -25,6 +29,10 @@ const startsleep = async (req, res) => {
 const getIsSleeping = async (req, res) => {
     const { uid } = req.params;
     const userRef = admin.database().ref(`users/${uid}`);
+    if (!(await user.once("value")).exists()) {
+        res.json({ error: true, message: "User Not Found" });
+        return;
+    }
     const issleeping = (await userRef.child("issleeping").once("value")).val();
     const email = (await userRef.child("email").once("value")).val();
     const response = {
@@ -39,6 +47,10 @@ const stopsleep = async (req, res) => {
     const { uid } = req.params;
     const { success } = req.params;
     const user = admin.database().ref(`users/${uid}`);
+    if (!(await user.once("value")).exists()) {
+        res.json({ error: true, message: "User Not Found" });
+        return;
+    }
     const issleeping = (await user.child("issleeping").once("value")).val();
     if (issleeping == 1) {
         if (success == 1) {
