@@ -141,6 +141,8 @@ const updateLevel = async (req, res) => {
         point: (await user.child("point").once("value")).val() + 1200,
       });
     }
+    res.json({ error: false, message: "Success Finished Challenge !" })
+    return;
   } else if(level == 0){
     user.update({ level: 1, idChallenge: 0, start_rules_time: 0, end_rules_time: 0 });
     res.json({ error: false, message: "Challenge Failed !" })
