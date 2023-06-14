@@ -120,27 +120,17 @@ const updateLevel = async (req, res) => {
     res.json({ error: true, message: "User Not Found" });
     return;
   }
+  if (!(await challenge.once("value")).exists()) {
+    res.json({ error: true, message: "Please Choose Challenge First !" });
+    return;
+  }
 
   if (level > maxLevel) {
-    if (maxLevel == 7) {
-      user.update({
-        level: 1,
-        idChallenge: 0,
-        point: (await user.child("point").once("value")).val() + 200,
-      });
-    } else if (maxLevel == 14) {
-      user.update({
-        level: 1,
-        idChallenge: 0,
-        point: (await user.child("point").once("value")).val() + 500,
-      });
-    } else if (maxLevel == 30) {
-      user.update({
-        level: 1,
-        idChallenge: 0,
-        point: (await user.child("point").once("value")).val() + 1200,
-      });
-    }
+    user.update({
+      level: 1,
+      idChallenge: 0,
+      point: (await user.child("point").once("value")).val() + (await challenge.child("point").once("value")).val(),
+    });
     res.json({ error: false, message: "Success Finished Challenge !" })
     return;
   } else if(level == 0){
