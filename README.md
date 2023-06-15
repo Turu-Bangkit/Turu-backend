@@ -1,9 +1,44 @@
-## Login
+# Turu Backend Documentation
+
+This repository contains the backend application for the Turu project. It is developed using Node.js, Express.js, Firebase Authentication, JSON Web Tokens (JWT), and Firebase Realtime Database.
+
+## Replication Steps
+
+### Prerequisites
+
+- Node.js: Make sure you have Node.js installed on your machine.
+
+### Step 1 : Clone the Repository
+Clone the Turu Backend repository by running the following command in your terminal:
+
+```git clone https://github.com/Turu-Bangkit/Turu-backend.git```
+
+### Step 2 : Set Up Firebase Project
+- Create a Firebase account (https://firebase.google.com) and set up a new project.
+- Enable Firebase Authentication and Realtime Database services for your project.
+
+### Step 3 : Configure Firebase Credentials
+- Go to the Firebase console (https://console.firebase.google.com) and navigate to the "Project settings" > "Service accounts" tab.
+- Click on "Generate new private key" to download a JSON file containing your service account credentials.
+- Rename the downloaded file to "serviceAccountKey.json" and place it in the project root directory.
+
+### Step 4 : Install Dependencies
+```npm install```
+
+### Step 5 : Start the Application
+In the terminal, run the following command to start the Turu Backend:  
+```npm start```  
+
+
+
+
+## API DOCUMENTATION
+### Login
 Firebase : Sign In with Google
 * Response :  
 	- token
 
-## VerifyLogin
+### VerifyLogin
 * URL
     - ```/login```
 * Method
@@ -23,7 +58,7 @@ Firebase : Sign In with Google
 }
 ```
 
-## Logout
+### Logout
 * URL
     - ```/logout```
 * Method
@@ -40,7 +75,7 @@ Firebase : Sign In with Google
 
 
 
-## GetPoint
+### GetPoint
 * URL
     - ```/point/{uid}```
 * Method
@@ -59,7 +94,7 @@ Firebase : Sign In with Google
 ```
 
 
-## AddPoint
+### AddPoint
 * URL
     - ```/point/{uid}```
 * Method
@@ -79,7 +114,7 @@ Firebase : Sign In with Google
 ```
 
 
-## GetAllChallenge
+### GetAllChallenge
 * URL
     - ```/challenge```
 * Method
@@ -118,7 +153,7 @@ Firebase : Sign In with Google
 ```
 
 
-## ChooseChallenge
+### ChooseChallenge
 * URL
     - ```/chooseChallenge/{uid}```
 * Method
@@ -138,7 +173,7 @@ Firebase : Sign In with Google
 }
 ```
 
-## GetStatusChallenge
+### GetStatusChallenge
 * URL
     - ```/statusChallenge/{uid}```
 * Method
@@ -164,7 +199,7 @@ Firebase : Sign In with Google
 ```
 
 
-## UpdateLevel
+### UpdateLevel
 * URL
     - ```/updateLevel/{uid}```
 * Method
@@ -183,7 +218,7 @@ Firebase : Sign In with Google
 }
 ```
 
-## GetDetailChallenge
+### GetDetailChallenge
 * URL
     - ```/challenge/{idChallenge}```
 * Method
@@ -210,7 +245,7 @@ Firebase : Sign In with Google
 ```
 
 
-## GetAllCatalog
+### GetAllCatalog
 * URL
     - ```/catalog```
 * Method
@@ -248,7 +283,7 @@ Firebase : Sign In with Google
 }
 ```
 
-## GetDetailCatalog
+### GetDetailCatalog
 * URL
     - ```/catalog/{idCatalog}```
 * Method
@@ -271,7 +306,7 @@ Firebase : Sign In with Google
 }
 ```
 
-## ExchangePoint
+### ExchangePoint
 * URL
     - ```/exchangePoint/{uid}```
 * Method
@@ -290,7 +325,7 @@ Firebase : Sign In with Google
 }
 ```
 
-## StartSleep
+### StartSleep
 * URL
     - ```/startsleep/{uid}```
 * Method
@@ -308,7 +343,7 @@ Firebase : Sign In with Google
 }
 ```
 
-## GetIsSleeping
+### GetIsSleeping
 * URL
     - ```/issleeping/{uid}```
 * Method
@@ -325,7 +360,7 @@ Firebase : Sign In with Google
 }
 ```
 
-## StopSleep
+### StopSleep
 * URL
     - ```/stopsleep/{uid}/{success}```
 * Method
